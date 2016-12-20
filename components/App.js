@@ -1,98 +1,118 @@
 import fetch from 'isomorphic-fetch';
 import React, { Component } from 'react';
-import Row from './Row';
-import GameList from './GameList';
+import Tile from './Tile';
+import VidSearch from './VidSearch';
+import VidList from './VidList';
 
-let gameStore = [];
+import {Form, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+
 
 function getInitialState() {
   return {
-    rows: [
-      ['', '', ''],
-      ['', '', ''],
-      ['', '', ''],
-    ],
-    turn: 'X',
-    winner: undefined,
-    gameList: gameStore,
+    tiles: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+    vidList: [{},{},{},{},{},{},{},{},{},{}],
+    title: "Your Playlist Title",
+    selection: null,
+    searchResults: [],
   };
 }
 
-function checkWin(rows) {
-  const combos = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-  ];
-
-  const flattened = rows.reduce((acc, row) => acc.concat(row), []);
-
-  return combos.find(combo => (
-    flattened[combo[0]] !== '' &&
-    flattened[combo[0]] === flattened[combo[1]] &&
-    flattened[combo[1]] === flattened[combo[2]]
-  ));
-}
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.vidClick = this.vidClick.bind(this);
+    this.boxClick = this.boxClick.bind(this);
+    this.searchUpdate = this.searchUpdate.bind(this);
     this.state = getInitialState();
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleClick(row, square) {
-    let { turn, winner } = this.state;
-    const { rows } = this.state;
-    const squareInQuestion = rows[row][square];
-
-    if (this.state.winner) return;
-    if (squareInQuestion) return;
-
-    rows[row][square] = turn;
-    turn = turn === 'X' ? 'O' : 'X';
-    winner = checkWin(rows);
-
+ 
+  vidClick(videoObj){
+    console.log("You clicked a video!")
+    let { selection , vidList } = this.state;
+    vidList[parseInt(selection) - 1] = videoObj;
     this.setState({
-      rows,
-      turn,
-      winner,
+       vidList
+    });
+    console.log("State after vidCLick", this.state)
+  }
+
+  boxClick(index) {
+    let { selection } = this.state;
+    selection = index;
+    this.setState({
+       selection
+    });
+    console.log('I clicked', this.state);
+  }
+
+  searchUpdate(results) {
+    console.log("Results:", results)
+    let { searchResults } = this.state;
+    searchResults = results;
+    this.setState({
+       searchResults
+    });
+    console.log('I searched', this.state);
+  }
+ handleSubmit(event) {
+    event.preventDefault();
+ }
+ handleChange (event) {
+   let { title } = this.state;
+   title = event.target.value;
+   console.log("Curr Title", title)
+   this.setState({
+       title
     });
   }
 
   render() {
-    const { rows, turn, winner, gameList } = this.state;
-    const handleClick = this.handleClick;
+    const { tiles, vidList, title, selection, searchResults } = this.state;
+    const boxClick = this.boxClick;
+    const vidClick = this.vidClick;
+    const searchUpdate = this.searchUpdate;
+    const handleSubmit = this.handleSubmit;
+    const handleChange = this.handleChange;
 
-    const rowElements = rows.map((letters, i) => (
-      <Row key={i} row={i} letters={letters} handleClick={handleClick} />
+    
+    let titleForm = ( 
+      <Form inline onSubmit={handleSubmit}>
+      <FormGroup>
+        <FormControl className="titleBar"  type="text" placeholder={title} onChange={handleChange}  />
+        {' '}
+        <Button className="btn-inverse" bsSize="small" type="submit">
+        Save
+        </Button>
+      </FormGroup>
+      </Form>
+    );    
+      
+    const tileElements = tiles.map((number, i) => (
+      <Tile key={i} index={i} selection={selection} number={number} vidList={vidList} boxClick={boxClick} />
     ));
-
-    let infoDiv;
-    if (winner) {
-      let winTurn = turn === 'X' ? 'O' : 'X';
-      infoDiv = (
-        <div>
-          <div>Player {winTurn} wins with squares {winner.join(', ')}!</div>
-        </div>
-      );
-    } else {
-      infoDiv = <div>Turn: {turn}</div>;
-    }
-
+  
+    let currSearch;
+    let itemList;
+    if (selection) { currSearch = (<VidSearch selection={selection} searchUpdate={searchUpdate} searchResults={searchResults} />);}
+    if (searchResults) { itemList = searchResults.map((vidObj) => {
+      return <VidList key={vidObj.id.videoId} videoID={vidObj.id.videoId} vidObj={vidObj } vidClick={vidClick} />
+    })}; 
+ 
     return (
+     
       <div>
-        {infoDiv}
+        {titleForm}
         <div id="board">
-          {rowElements}
+          {tileElements}
         </div>
-        <button id="reset" onClick={() => this.setState(getInitialState())}>Reset board</button>
-        <GameList gameList={gameList} />
+        {currSearch}
+        <ul>
+        {itemList}
+        </ul>
       </div>
     );
   }

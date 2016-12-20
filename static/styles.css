@@ -1,27 +1,76 @@
 body {
-  background: #ACCEEC; }
+  background: black;
+  color: white;
+  text-align: center;
+   }
+
+h1 {
+  font-size: 4em;
+}
+
+.btn-inverse{
+  background-color: black;
+  color:white;
+}
+
+#vidList{
+  margin: auto;
+  width: 800px;
+}
+
+.titleBar{
+  width: 600px;
+  font-size: 1.2em;
+  font-style: italic;
+  background-color: black;
+  color: chartreuse;
+  border: none;
+  margin:auto;
+}
+
+.searchBar{
+  color:black;
+}
 
 #board {
-  width: 390px;
-  height: 390px;
-  margin: 20px auto;
-  padding: 0; }
+  width: 850px;
+  height: 400px;
+  margin: 50px auto;
+  padding: 0; 
+}
 
-.square {
+.tile {
   box-sizing: border-box;
+  color: white;
+  background-repeat:none;
+  background-position: center;
   float: left;
   font-size: 0;
   line-height: 0;
-  width: 120px;
-  height: 120px;
+  width: 125px;
+  height: 125px;
   border-radius: 4px;
-  background-color: white;
-  border: 1px solid gainsboro;
+  background-color: midnightblue;
+  border: 1px solid dodgerblue;
   margin: 5px;
-  font-size: 2em;
+  font-size: 5em;
+  text-shadow: 2px 2px 6px black; 
   font-weight: 550;
   line-height: 100px;
-  text-align: center;
+  text-align: left;
   cursor: pointer; }
-  .square:hover {
-    background-color: #d9d9d9; }
+
+.tile:first-child{
+  width:400px;
+  height:400px;
+  background-size: 200%;
+}
+ul{
+  list-style: none;
+}
+
+li:hover {
+  background-color: midnightblue;
+}
+.tile:hover {
+    background-color: chartreuse }
