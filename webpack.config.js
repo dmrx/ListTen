@@ -4,7 +4,7 @@ const larry = {
   output: {
     path: __dirname,
     filename: "webpack-bundle.js",
-    publicPath: "/static/",
+    publicPath: "/",
   },
   module: {
     loaders: [
@@ -47,14 +47,6 @@ const larry = {
       }
 
     ]
-  // },
-  // devServer: {
-  //   hot: true,
-  //   colors: true,
-  //   // contentBase: './build',
-  //   historyApiFallback: true,
-  //   inline: true,
-  //   progress: true
   }
 }
 

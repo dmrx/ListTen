@@ -42,7 +42,7 @@ const tooltip = (
 
 
 Tile.propTypes = {
-  selection: PropTypes.string.isRequired,
+  selection: PropTypes.string,
   vidList: PropTypes.array.isRequired,
   boxClick: PropTypes.func.isRequired,
   number: PropTypes.string,

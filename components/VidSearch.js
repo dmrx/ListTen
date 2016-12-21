@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import { Col, Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 
 
 let vidList = []; 
@@ -37,12 +37,11 @@ const VidSearch = (props) => {
   };
 
   return (
-    <div id="searchForm">
-      <h3>#{boxIndex} : Search Videos</h3>
-  
-    <Form onSubmit={handleSubmit} inline>
-      <FormGroup>
-        <FormControl className="searchBar" type="text" onChange={handleChange}  />
+    <div>
+    <h4>#{boxIndex} : Search Videos</h4>
+    <Form onSubmit={handleSubmit} >
+      <FormGroup>  
+        <FormControl className="titleBar" type="text" placeholder={"I want to search for..."} onChange={handleChange}  />
         {' '}
         <Button className="btn-inverse" bsSize="small" value="Submit" type="submit">
         Search

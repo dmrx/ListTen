@@ -26,11 +26,14 @@ h1 {
   color: chartreuse;
   border: none;
   margin:auto;
+  text-align: center;
 }
 
-.searchBar{
-  color:black;
+.searchForm{
+  margin:auto;
+  text-align: center;
 }
+
 
 #board {
   width: 850px;

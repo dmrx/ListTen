@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Tile from './Tile';
 import VidSearch from './VidSearch';
 import VidList from './VidList';
+import Header from './Header';
+
 
 import {Form, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
@@ -23,6 +25,7 @@ class App extends Component {
     super(props);
     this.vidClick = this.vidClick.bind(this);
     this.boxClick = this.boxClick.bind(this);
+    this.playClick = this.playClick.bind(this);
     this.searchUpdate = this.searchUpdate.bind(this);
     this.state = getInitialState();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,6 +52,15 @@ class App extends Component {
     console.log('I clicked', this.state);
   }
 
+ playClick(vidList) {
+  const filteredList = vidList.filter((obj) => obj.snippet);
+  console.log(filteredList); 
+  let src = "https://www.youtube.com/embed/VIDEO_ID?playlist=";
+  if (vidList[0].snippet) vidList.forEach((obj) => { if (obj.id) src += obj.id.videoId + ","});
+  window.open(src,'Your TenList');
+  }
+
+
   searchUpdate(results) {
     console.log("Results:", results)
     let { searchResults } = this.state;
@@ -58,9 +70,12 @@ class App extends Component {
     });
     console.log('I searched', this.state);
   }
+
  handleSubmit(event) {
-    event.preventDefault();
+   event.preventDefault();
  }
+   
+    
  handleChange (event) {
    let { title } = this.state;
    title = event.target.value;
@@ -74,13 +89,13 @@ class App extends Component {
     const { tiles, vidList, title, selection, searchResults } = this.state;
     const boxClick = this.boxClick;
     const vidClick = this.vidClick;
+    const playClick = this.playClick;
     const searchUpdate = this.searchUpdate;
     const handleSubmit = this.handleSubmit;
     const handleChange = this.handleChange;
-
     
     let titleForm = ( 
-      <Form inline onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
       <FormGroup>
         <FormControl className="titleBar"  type="text" placeholder={title} onChange={handleChange}  />
         {' '}
@@ -103,8 +118,8 @@ class App extends Component {
     })}; 
  
     return (
-     
       <div>
+      <Header vidList={vidList} playClick={playClick} />
         {titleForm}
         <div id="board">
           {tileElements}
