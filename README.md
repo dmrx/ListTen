@@ -1,3 +1,3 @@
 # listten
 
-![alt tag](./ListenTen-Screenshot.png)
+![alt tag](https://github.com/dmrx/listten/blob/master/ListTen-Screenshot.png)
