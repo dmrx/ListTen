@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import {OverlayTrigger,Tooltip, Image} from 'react-bootstrap';
+import styles from '../styles.css';
 
 const Tile = (props) => {
   const { handleClick, number, index, vidList, selection } = props;
@@ -16,9 +17,8 @@ const Tile = (props) => {
     console.trace();
 
   } 
-  let divStyle={
-  }
-  
+
+  let divStyle = {};
   if(selection === number) {
     console.log("Looking for selected")
     divStyle.border = '2px solid chartreuse';
@@ -30,16 +30,11 @@ const tooltip = (
 );
 
   return (
-     <OverlayTrigger placement="top" overlay={tooltip}>
-    <div className="tile" style={divStyle} onClick={() => { boxClick(number); }}></div>
+    <OverlayTrigger placement="top" overlay={tooltip}>
+    <div className={styles.tile} style={divStyle} onClick={() => { boxClick(number); }}></div>
     </OverlayTrigger>
   );
 };
-
-
-   
-
-
 
 Tile.propTypes = {
   selection: PropTypes.string,

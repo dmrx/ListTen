@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/static/";
+/******/ 	__webpack_require__.p = "/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -22200,10 +22200,9 @@
 	    bgImage = vidList[index].snippet.thumbnails.high.url;
 	    tip = vidList[index].snippet.title;
 	    tipDesc = console.log("BackgroundURL: ", bgImage);
+	    console.trace();
 	  }
-	  var divStyle = {
-	    backgroundImage: 'url(' + bgImage + ')'
-	  };
+	  var divStyle = {};
 
 	  if (selection === number) {
 	    console.log("Looking for selected");
@@ -22224,13 +22223,9 @@
 	  return _react2.default.createElement(
 	    _reactBootstrap.OverlayTrigger,
 	    { placement: 'top', overlay: tooltip },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'tile', style: divStyle, onClick: function onClick() {
-	          boxClick(number);
-	        } },
-	      number
-	    )
+	    _react2.default.createElement(_reactBootstrap.Image, { responsive: true, src: bgImage, className: 'tile', style: divStyle, onClick: function onClick() {
+	        boxClick(number);
+	      } })
 	  );
 	};
 
@@ -41666,7 +41661,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background: black;\n  color: white;\n  text-align: center;\n   }\n\nh1 {\n  font-size: 4em;\n}\n\n.btn-inverse{\n  background-color: black;\n  color:white;\n}\n\n#vidList{\n  margin: auto;\n  width: 800px;\n}\n\n.titleBar{\n  width: 600px;\n  font-size: 1.2em;\n  font-style: italic;\n  background-color: black;\n  color: chartreuse;\n  border: none;\n  margin:auto;\n  text-align: center;\n}\n\n.searchForm{\n  margin:auto;\n  text-align: center;\n}\n\n\n#board {\n  width: 850px;\n  height: 400px;\n  margin: 50px auto;\n  padding: 0; \n}\n\n.tile {\n  box-sizing: border-box;\n  color: white;\n  background-repeat:none;\n  background-position: center;\n  float: left;\n  font-size: 0;\n  line-height: 0;\n  width: 125px;\n  height: 125px;\n  border-radius: 4px;\n  background-color: midnightblue;\n  border: 1px solid dodgerblue;\n  margin: 5px;\n  font-size: 5em;\n  text-shadow: 2px 2px 6px black; \n  font-weight: 550;\n  line-height: 100px;\n  text-align: left;\n  cursor: pointer; }\n\n.tile:first-child{\n  width:400px;\n  height:400px;\n  background-size: 200%;\n}\nul{\n  list-style: none;\n}\n\nli:hover {\n  background-color: midnightblue;\n}\n.tile:hover {\n    background-color: chartreuse }\n", ""]);
+	exports.push([module.id, "body {\n  background: black;\n  color: white;\n  text-align: center;\n   }\n\nh1 {\n  font-size: 4em;\n}\n\n.btn-inverse{\n  background-color: black;\n  color:white;\n}\n\n#vidList{\n  margin: auto;\n  width: 800px;\n}\n\n.titleBar{\n  width: 600px;\n  font-size: 1.2em;\n  font-style: italic;\n  background-color: black;\n  color: chartreuse;\n  border: none;\n  margin:auto;\n  text-align: center;\n}\n\n.searchForm{\n  margin:auto;\n  text-align: center;\n}\n\n\n#board {\n  width: 850px;\n  height: 400px;\n  display: flex;\n  margin: 50px auto;\n  padding: 0; \n}\n\n.tile {\n  box-sizing: border-box;\n  color: white;\n  background-repeat:none;\n  background-position: center;\n  float: left;\n  font-size: 0;\n  line-height: 0;\n  flex-grow: 1;\n  border-radius: 4px;\n  background-color: midnightblue;\n  border: 1px solid dodgerblue;\n  margin: 5px;\n  font-size: 5em;\n  text-shadow: 2px 2px 6px black; \n  font-weight: 550;\n  line-height: 100px;\n  text-align: left;\n  cursor: pointer; }\n\n.tile:first-child{\n  flex-grow: 2;\n  background-size: 200%;\n}\nul{\n  list-style: none;\n}\n\nli:hover {\n  background-color: midnightblue;\n}\n.tile:hover {\n    background-color: chartreuse }\n", ""]);
 
 	// exports
 

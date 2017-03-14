@@ -8,7 +8,7 @@ h1 {
   font-size: 4em;
 }
 
-.btn-inverse{
+.btnInverse{
   background-color: black;
   color:white;
 }
@@ -22,7 +22,7 @@ h1 {
   width: 600px;
   font-size: 1.2em;
   font-style: italic;
-  background-color: black;
+  background-color: white;
   color: chartreuse;
   border: none;
   margin:auto;
@@ -33,7 +33,6 @@ h1 {
   margin:auto;
   text-align: center;
 }
-
 
 #board {
   width: 850px;
@@ -50,8 +49,8 @@ h1 {
   float: left;
   font-size: 0;
   line-height: 0;
-  width:125;
-  height:125;
+  width:125px;
+  height:125px;
   border-radius: 4px;
   background-color: midnightblue;
   border: 1px solid dodgerblue;
@@ -61,11 +60,15 @@ h1 {
   font-weight: 550;
   line-height: 100px;
   text-align: left;
-  cursor: pointer; }
+  cursor: pointer; 
+  }
 
 .tile:first-child{
+   width:250px;
+  height:250px;
   background-size: 200%;
 }
+
 ul{
   list-style: none;
 }

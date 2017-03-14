@@ -31,9 +31,12 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
+    "pg": "^6.1.2",
+    "pg-hstore": "^2.3.2",
     "react": "^15.4.1",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
+    "sequelize": "^3.28.0",
     "webpack": "^1.14.0"
   }
 }

@@ -1,8 +1,7 @@
-const larry = {
-  // context: __dirname + "/client",
+module.exports = {
   entry: "./index.js",
   output: {
-    path: __dirname,
+    path: "./dev",
     filename: "webpack-bundle.js",
     publicPath: "/",
   },
@@ -14,7 +13,7 @@ const larry = {
         loader: "babel",
         include: __dirname,
         query: {
-          presets: ['es2015', 'react', 'react-hmre']
+          presets: ['es2015', 'react']
         }
       },
       {
@@ -49,5 +48,3 @@ const larry = {
     ]
   }
 }
-
-module.exports = larry;

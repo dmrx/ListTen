@@ -28,7 +28,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development')
     })
   ],
-  module: {
+   module: {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
