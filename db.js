@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 // PSQL via SEQUELIZE INITIALIZATION
-const sequelize = new Sequelize('postgres://codesmith:dmrx@localhost:5432/listtendb');
+const sequelize = new Sequelize('postgres://listten.cdt9ifm2vzuz.us-west-2.rds.amazonaws.com:5432/dmrx');
 
 sequelize
   .authenticate()
@@ -13,15 +13,19 @@ sequelize
   });
 
 const Vlist = sequelize.define('vlist', {
-  _id: {
-    type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true 
-  },
-  title: {
-    type: Sequelize.STRING
-  },
-  vdata: {
-    type: Sequelize.JSON
-  },
+  listName: Sequelize.String,
+  description: Sequelize.Text,
+  creatorID: Sequelize.INTEGER,
+  vid1: Sequelize.String,
+  vid1: Sequelize.String,
+  vid3: Sequelize.String,
+  vid4: Sequelize.String,
+  vid5: Sequelize.String,
+  vid6: Sequelize.String,
+  vid7: Sequelize.String,
+  vid8: Sequelize.String,
+  vid9: Sequelize.String,
+  vid10: Sequelize.String,
 });
 
 Vlist.sync().then(function () {

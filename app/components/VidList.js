@@ -3,7 +3,6 @@ import { Form, FormGroup, ControlLabel, FormControl, Button } from 'react-bootst
 
 const VidList = (props) => {
   const {vidObj, videoID, vidClick} = props;
-  console.log(vidClick);
   let vidTitle = vidObj.snippet.title;
   let vidThumbnail = vidObj.snippet.thumbnails.medium.url;
   let embedUrl= 'http://www.youtube.com/embed/' + videoID;

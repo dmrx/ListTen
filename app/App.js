@@ -1,13 +1,13 @@
 import fetch from 'isomorphic-fetch';
 import React from 'react';
-import {Form, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import {Grid, Row, Col, Form, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 import Tile from './components/Tile';
 import VidSearch from './components/VidSearch';
 import VidList from './components/VidList';
 import Header from './components/Header';
 import styles from './styles.css';
-
+import client from './client';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,9 +22,11 @@ export default class App extends React.Component {
   }
   
   vidClick = (videoObj) => {
+    console.log("I registed click with obj", videoObj)
     let { selection , vidList } = this.state;
     vidList[parseInt(selection) - 1] = videoObj;
     this.setState({ vidList });
+    console.log("This is my vidList", vidList)
   }
 
   boxClick = (index) =>  {
@@ -88,17 +90,19 @@ export default class App extends React.Component {
     })}; 
  
     return (
-      <div>
+      <Grid>
+      <Col md={12}>
       <Header vidList={vidList} playClick={this.playClick} />
         {titleForm}
-        <div id="board">
+        <div className={styles.board}>
           {tileElements}
         </div>
         {currSearch}
         <ul>
         {itemList}
         </ul>
-      </div>
+      </Col>  
+      </Grid>
     );
   }
 }

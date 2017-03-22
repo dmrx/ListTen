@@ -1,38 +1,36 @@
 import React, { PropTypes } from 'react';
-import {OverlayTrigger,Tooltip, Image} from 'react-bootstrap';
-import styles from '../styles.css';
+import {Col, OverlayTrigger,Tooltip, Image} from 'react-bootstrap';
+
+import styles from '../styles.css'
 
 const Tile = (props) => {
   const { handleClick, number, index, vidList, selection } = props;
   const boxClick = props.boxClick;
   let bgImage="#"
   let tip="Click and add a video below!"
-  let tipDesc="";
-  
+  let addStyle = {};
+
   if (vidList[index].snippet){
     bgImage = vidList[index].snippet.thumbnails.high.url;
+    addStyle.backgroundImage =  'url(' + bgImage + ')';
+    console.log("bg registered", bgImage,  addStyle);
     tip = vidList[index].snippet.title;
-    tipDesc = 
-    console.log("BackgroundURL: ", bgImage)
-    console.trace();
-
   } 
 
-  let divStyle = {};
   if(selection === number) {
-    console.log("Looking for selected")
-    divStyle.border = '2px solid chartreuse';
+    addStyle.border = '2px solid chartreuse';
   } 
 
-
-const tooltip = (
-  <Tooltip id="tooltip"><strong>{tip}</strong>{tipDesc}</Tooltip>
-);
+  const tooltip = (
+    <Tooltip id="tooltip"><strong>{tip}</strong></Tooltip>
+  );
 
   return (
+    <Col xs={12} md={4}>
     <OverlayTrigger placement="top" overlay={tooltip}>
-    <div className={styles.tile} style={divStyle} onClick={() => { boxClick(number); }}></div>
+    <div className={styles.tile} style={addStyle} onClick={() => { boxClick(number); }}></div>
     </OverlayTrigger>
+    </Col>  
   );
 };
 
